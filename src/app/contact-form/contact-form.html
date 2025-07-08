@@ -1,0 +1,64 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Formulario de Contacto</h4>
+        </div>
+        <div class="card-body">
+          <form (submit)="enviarMensaje()" novalidate>
+            
+            <!-- Campo Author -->
+            <div class="mb-3">
+              <label for="author" class="form-label">Ingresa a nombre de quien chatearás:</label>
+              <input 
+                id="author" 
+                type="text" 
+                required 
+                minlength="3" 
+                maxlength="12"
+                name="author"
+                class="form-control"
+                [(ngModel)]="estado_formulario.author"
+                #author="ngModel"
+              />
+              @if ((author.dirty || author.touched) && author.invalid) {
+                <div class="text-danger small mt-1">
+                  El nombre debe tener entre 3 y 12 caracteres.
+                </div>
+              }
+            </div>
+
+            <!-- Campo Texto -->
+            <div class="mb-3">
+              <label for="text" class="form-label">Escribe el mensaje:</label>
+              <textarea 
+                id="text"
+                required
+                minlength="20"
+                name="text"
+                class="form-control"
+                rows="5"
+                [(ngModel)]="estado_formulario.text"
+                #text="ngModel"
+              ></textarea>
+              @if ((text.dirty || text.touched) && text.invalid) {
+                <div class="text-danger small mt-1">
+                  El mensaje debe tener al menos 20 caracteres.
+                </div>
+              }
+            </div>
+
+            <!-- Botón -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">
+                Enviar mensaje
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

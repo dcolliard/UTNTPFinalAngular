@@ -4,6 +4,7 @@ import { Home } from './home/home';
 import { Posts } from './posts/posts';
 import { Products } from './products/products';
 import { ProductDetail } from './product-detail/product-detail';
+import { ContactForm } from './contact-form/contact-form';
 
 //Queremos hacer una ruta para una mensajeria tipo whatsapp o chatbot
 //Ejemplo: /chat
@@ -27,6 +28,10 @@ export const routes: Routes = [
     {
         path: 'products/:product_id',
         component: ProductDetail
+    },
+    {
+        path: 'contact', //Cualquier ruta que no se haya definido arriba
+        component: ContactForm
     },
     {
         path: '**', //Cualquier ruta que no se haya definido arriba

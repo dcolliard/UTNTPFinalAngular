@@ -1,5 +1,7 @@
 /* Definir el css global de nuestra app */
 /* Normalize */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
 *{
     font-family: sans-serif;
     box-sizing: border-box;
