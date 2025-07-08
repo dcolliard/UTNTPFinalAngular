@@ -1,0 +1,14 @@
+<h1>Hola mundo</h1>
+<p>Hola que tal {{nombre}}</p>
+<button (click)="saludar()">Click</button>
+<br/>
+<!-- Vamos a hacer un contador que se pueda ir incrementado a medida le damos al boton de + -->
+<span>Contador: {{contador}}</span>
+<button (click)="incrementar()">Incrementar</button>
+<div>
+    <!-- For of statement: Sirve para recorrer un array en Angular (SOLO VALIDO PARA ARRAYS (No json)) -->
+    <!-- Track statement: Sirve para identificar cada elemento del array al momento de renderizarlo -->
+    @for(producto of productos; track producto.id ){
+        <app-product [nombre]="producto.nombre" [precio]="producto.precio"/>
+    }
+</div>

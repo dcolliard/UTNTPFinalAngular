@@ -1,0 +1,71 @@
+<h1>Mensajeria de prueba</h1>
+<div>
+    <!-- @if statment: Sirve para mostrar algo bajo cierta condicion -->
+    @if(messages.length === 0){
+        <span class="error-text">Aun no hay mensajes, escribe algo!</span>
+    }
+    <!-- @else statment: Sirve para ejecutar algo cuando el @if falle -->
+    @else {
+        @for(message of messages; track message.id){
+
+            <div>
+                <h3>{{message.author}} ha dicho:</h3>
+                <p>{{message.text}}</p>
+                <button>Eliminar mensaje</button>
+                <hr />
+            </div>
+        }
+    }
+</div>
+<!-- 
+(EN TIEMPO REAL): Nuestro formulario puede tener distintos estados dependiendo de la interaccion del usuario.
+Por ejemplo:
+- invalid: El formulario no es valido
+- valid: El formulario es valido
+
+-->
+<form (submit)="enviarMensaje()">
+    <div>
+        <label for="author">Ingresa a nombre de quien chatearas:</label>
+        <input 
+            id="author" 
+            type="text" 
+            required 
+            minlength="3" 
+            maxlength="12"
+            name="author"
+            [(ngModel)]="estado_formulario.author"
+            #author="ngModel"
+        >
+        <!-- 
+        ngModel lo podemos usar al haber importado al formsModule en nuestro componente chat
+        [(ngModel)] es una sincronizacion de datos 
+        -->
+        <!-- 
+        #author='ngModel' es una referencia al input del author del formulario
+        -->
+        <!-- Dirty es cuando el usuario ha interactuado con el input -->
+        @if(author.dirty){
+            <span>👁</span>
+        }
+        <!-- Touched es cuando el usuario ha salido del input (Quito el focus)-->
+        @if(author.touched){
+            <span>Tengo tu atencion</span>
+        }
+        <!-- Si el usuario interactuo pero hubo un error en el input lanzamos el error en la pantalla -->
+        @if((author.dirty || author.touched) &&    author.invalid){
+            <span class="error-text">El nombre debe tener entre 3 y 12 caracteres</span>
+        }
+    </div>
+    <div>
+        <label for="text">Escribe el mensaje:</label>
+        <textarea 
+            id="text" 
+            required
+            minlength="120"
+            name="text"
+            [(ngModel)]="estado_formulario.text"
+        ></textarea>
+    </div>
+    <button type="submit">Enviar mensaje</button>
+</form>

@@ -1,0 +1,8 @@
+/* Definir el css global de nuestra app */
+/* Normalize */
+*{
+    font-family: sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}

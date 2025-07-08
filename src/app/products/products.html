@@ -1,0 +1,31 @@
+<div class="product-list-container">
+    <h1>Productos</h1>
+    @if(loading){
+    <span>Cargando...</span>
+    }
+    @else{
+    <div class="product-list-container__product-list">
+        @for(product of products; track product.id){
+        <a class="product-list-container__product-list__product-card"  href="/products/{{product.id}}">
+            <img src="{{product.img}}" alt="{{product.title}}" />
+            <h3>{{product.title}}</h3>
+            <span
+                class="product-list-container__product-list__product-card__product-original-price">${{product.price}}></span>
+            <div class="product-list-container__product-list__product-card__product-final-price">
+                <span>$</span><span>({{product.discount}}% OFF)</span>
+            </div>
+            @if(product.is_same_price_with_intallments){
+            <span>En 6 cuotas de ${{product.installments}} sin interes</span>
+            }
+            @else{
+            <span>En 6 cuotas de ${{product.installments}} con interes</span>
+            }
+            @if(product.arrives_free){
+            <span>Llega gratis</span>
+            }
+        </a>
+        }
+    </div>
+    }
+
+</div>
