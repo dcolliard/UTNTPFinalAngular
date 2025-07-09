@@ -1,0 +1,34 @@
+.price {
+    font-size: 1.5em; 
+    margin: 10px 0;
+ }
+
+ .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+
+ .price_not_discount {
+  margin-right: 20px;
+  
+}
+
+.discount {
+  color: rgb(6, 106, 6);
+  margin-left: 10px;
+}
+
+.mismo_precio {
+    color: rgb(6, 106, 6);
+    margin: 5px 0px;
+    display:block
+}
+
+.arrives_free {
+    color: rgb(6, 106, 6);
+    margin: 5px 0px;
+    display:block;
+    font-weight: bold;
+
+}

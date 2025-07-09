@@ -2,9 +2,7 @@
   <div class="row align-items-center">
     <div class="col-md-6">
       <h1 class="display-4 fw-bold">¡Bienvenidos a BikeZone!</h1>
-      <a class="btn btn-primary btn-lg mt-3" routerLink="/contacto">
-        Contactanos
-      </a>
+      
     </div>
     <div class="col-md-6 text-center">
      <i class="bi bi-bicycle fs-1 text-primary"></i>
@@ -19,32 +17,53 @@
 
 
 <div class="product-list-container">
-    <h1>Productos</h1>
     @if(loading){
     <span>Cargando...</span>
     }
     @else{
-    <div class="product-list-container__product-list">
+
+      <div class="container">
+        <div class="row">
+
         @for(product of products; track product.id){
-        <a class="product-list-container__product-list__product-card"  href="/products/{{product.id}}">
-            <img src="{{product.img}}" alt="{{product.title}}" />
+
+        <div class="col-12 col-md-6 mb-4">
+          <div class="product-card">
+            <img src={{product.img}} class="img-fluid" style="object-fit: contain;" />
             <h3>{{product.title}}</h3>
-            <span
-                class="product-list-container__product-list__product-card__product-original-price">${{product.price}}></span>
-            <div class="product-list-container__product-list__product-card__product-final-price">
-                <span>$</span><span>({{product.discount}}% OFF)</span>
+            <div>
+                <span class="price_not_discount"><s>${{ product.price | number: '1.0-0' }}</s></span>
+                <span class="price">${{ (product.price * (1 - product.discount)) | number: '1.0-0' }}</span>
+                <span class="discount"><sup>{{ getDiscountPercent(product.discount) }}% OFF</sup></span>
+
             </div>
-            @if(product.is_same_price_with_intallments){
-            <span>En 6 cuotas de ${{product.installments}} sin interes</span>
-            }
-            @else{
-            <span>En 6 cuotas de ${{product.installments}} con interes</span>
-            }
-            @if(product.arrives_free){
-            <span>Llega gratis</span>
-            }
-        </a>
+            <span
+              class="mismo_precio"
+              [style.visibility]="product.is_same_price_with_installments ? 'visible' : 'hidden'"
+            >
+              Mismo precio en {{ product.installments }} cuotas de ${{ (product.price / product.installments) | number: '1.2-2' }} sin interés
+            </span>
+            <span
+              class="arrives_free"
+              [style.visibility]="product.arrives_free ? 'visible' : 'hidden'"
+            >
+              <i class="bi bi-truck"></i> Envío gratis
+            </span>
+            <br>
+            <div class="actions">
+                  <button class="btn btn-warning d-flex align-items-center gap-2"
+                  (click)="comprar(product.title)">
+                  <i class="bi bi-cart" style="margin-right: 5px;"></i>
+                  Comprar ahora 
+                  </button>
+                <a href="/products/{{product.id}}">Ver detalle</a>
+            </div>
+          </div>
+        </div>
+
+      
         }
+     </div>
     </div>
     }
 

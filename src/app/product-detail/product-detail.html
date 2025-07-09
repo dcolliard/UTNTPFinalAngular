@@ -1,3 +1,44 @@
-@if(product_selected){
-    <h1>{{product_selected.title}}</h1>
+@if(product){
+    
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 text-center">
+            <img
+                src={{product.img}}
+                alt={{product.title}}
+                class="img-fluid rounded product-image"
+            />
+            </div>
+            <div class="col-md-6">
+                <h2 class="mb-3">{{product.title}}</h2>
+                <p class="text-muted">{{product.description}}</p>
+                <div>
+                    <span class="price_not_discount"><s>${{ product.price | number: '1.0-0' }}</s></span>
+                    <span class="price">${{ (product.price * (1 - product.discount)) | number: '1.0-0' }}</span>
+                    <span class="discount"><sup>{{ getDiscountPercent(product.discount) }}% OFF</sup></span>
+                </div>
+                <span
+                    class="mismo_precio"
+                    [style.visibility]="product.is_same_price_with_installments ? 'visible' : 'hidden'"
+                >
+                    Mismo precio en {{ product.installments }} cuotas de ${{ (product.price / product.installments) | number: '1.2-2' }} sin interés
+                </span>
+                <span
+                    class="arrives_free"
+                    [style.visibility]="product.arrives_free ? 'visible' : 'hidden'"
+                >
+                    <i class="bi bi-truck"></i> Envío gratis
+                </span>
+                <div class="mt-4">
+                    <button class="btn btn-warning d-flex align-items-center gap-2"
+                    (click)="comprar(product.title)">
+                    <i class="bi bi-cart" style="margin-right: 5px;"></i>
+                    Comprar ahora 
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 }

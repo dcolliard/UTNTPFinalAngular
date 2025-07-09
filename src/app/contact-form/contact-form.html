@@ -1,43 +1,63 @@
-<div class="container mt-5">
+<div class="container mt-5 pt-4">
   <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-          <h4 class="mb-0">Formulario de Contacto</h4>
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-info text-white rounded-top-3">
+          <h4 class="mb-0 text-center">Formulario de Contacto</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body p-4 bg-light">
           <form (submit)="enviarMensaje()" novalidate>
             
-            <!-- Campo Author -->
-            <div class="mb-3">
-              <label for="author" class="form-label">Ingresa a nombre de quien chatearás:</label>
-              <input 
-                id="author" 
-                type="text" 
+            <!-- Campo Nombre -->
+            <div class="mb-4">
+              <label for="nombre" class="form-label fw-semibold">Tu nombre:</label>
+              <input
+                id="nombre"
+                type="text"
                 required 
                 minlength="3" 
                 maxlength="12"
-                name="author"
-                class="form-control"
-                [(ngModel)]="estado_formulario.author"
-                #author="ngModel"
+                name="nombre"
+                class="form-control form-control-lg rounded-3"
+                [(ngModel)]="estado_formulario.name"
+                #name="ngModel"
               />
-              @if ((author.dirty || author.touched) && author.invalid) {
+              @if ((name.dirty || name.touched) && name.invalid) {
                 <div class="text-danger small mt-1">
                   El nombre debe tener entre 3 y 12 caracteres.
                 </div>
               }
             </div>
 
+            <!-- Campo email -->
+            <div class="mb-4">
+              <label for="email" class="form-label fw-semibold">Correo Electrónico:</label>
+              <input
+                id="email"
+                type="email"
+                required
+                email
+                name="email"
+                class="form-control form-control-lg rounded-3"
+                [(ngModel)]="estado_formulario.email"
+                #email="ngModel"
+              />
+              @if ((email.dirty || email.touched) && email.invalid) {
+                <div class="text-danger small mt-1">
+                  El correo electrónico es inválido.
+                </div>
+              }
+            </div>
+
             <!-- Campo Texto -->
-            <div class="mb-3">
-              <label for="text" class="form-label">Escribe el mensaje:</label>
+            <div class="mb-4">
+              <label for="text" class="form-label fw-semibold">Mensaje:</label>
               <textarea 
                 id="text"
                 required
                 minlength="20"
                 name="text"
-                class="form-control"
+                class="form-control form-control-lg rounded-3"
                 rows="5"
                 [(ngModel)]="estado_formulario.text"
                 #text="ngModel"
@@ -51,8 +71,8 @@
 
             <!-- Botón -->
             <div class="d-grid">
-              <button type="submit" class="btn btn-primary">
-                Enviar mensaje
+              <button type="submit" class="btn btn-info btn-lg text-white fw-bold rounded-3">
+                <i class="bi bi-send-fill me-2"></i>Enviar mensaje
               </button>
             </div>
 

@@ -10,7 +10,7 @@ export interface ProductInterface {
   price: number,
   discount: number,
   installments: number,
-  is_same_price_with_intallments: boolean,
+  is_same_price_with_installments: boolean,
   arrives_free: boolean,
   id: number
 }

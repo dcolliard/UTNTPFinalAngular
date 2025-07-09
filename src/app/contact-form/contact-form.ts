@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 interface Message {
-  author: string,
-  id: number, 
+  name: string,
+  email: string,
+  id: number,
   text: string
 }
 
@@ -15,11 +16,12 @@ interface Message {
 })
 export class ContactForm {
     enviarMensaje (){
-    console.log("Mensaje enviado")
+    alert("Mensaje enviado")
     
   }
     estado_formulario = {
-    author: '',
+    name: '',
+    email: '',
     text: ''
   }
 
